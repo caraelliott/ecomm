@@ -7,7 +7,7 @@ function LoginPage() {
     <>
       <h1>Hello</h1>
       <div>
-  <Badge bg="primary">Primary</Badge> <Badge bg="secondary">Secondary</Badge>{' '}
+  <Badge bg="primary">Primary Badge</Badge> <Badge bg="secondary">Secondary</Badge>{' '}
   </div>
   </>
   );
