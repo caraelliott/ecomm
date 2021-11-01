@@ -1,11 +1,13 @@
 import React from "react";
 import Nav from "react-bootstrap/Nav";
 import styled from 'styled-components';
+import Login from './Login';
+
 
 
 function NavbarVertical() {
   return (
-    <div>
+    <PageForm>
         <VerticalNav>
       <Nav 
        className=" flex-column  "
@@ -18,7 +20,10 @@ function NavbarVertical() {
         </Nav.Item>
       </Nav>
       </VerticalNav>
-    </div>
+      <Login/>
+
+
+    </PageForm>
   );
 }
 
@@ -34,6 +39,9 @@ const VerticalNav = styled.div`
     
     `
 
+const PageForm = styled.div`
+display:flex;
 
 
+`
 export default NavbarVertical;
