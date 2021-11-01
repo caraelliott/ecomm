@@ -8,10 +8,12 @@ import NavbarVertical from './components/NavbarVertical';
 
 
 const LoginPage=()=>{
+    console.log("testing env",process.env)
   return(
     
         
     <>
+    
     <GlobalStyle/>
       <NavbarHead/>
       <NavbarVertical/>
