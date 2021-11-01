@@ -1,5 +1,5 @@
 import React from 'react'
-import Form from 'react-bootstrap/Form'
+
 import styled from 'styled-components';
 
 
@@ -29,7 +29,7 @@ const Login=() =>{
 
             <button type="submit" className="btn btn-primary btn-block">Submit</button>
             <p className="forgot-password text-right">
-                Forgot <a href="#">password?</a>
+                Forgot <a href="#action">password?</a>
             </p>
         </form>
         </FormWrapper>

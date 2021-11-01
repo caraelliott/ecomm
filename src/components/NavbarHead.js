@@ -6,7 +6,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import { GiShoppingCart } from "react-icons/gi";
-import logo from '../assets/eyelogo.png'
+
 
 
 function NavbarHead() {

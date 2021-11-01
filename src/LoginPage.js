@@ -1,7 +1,7 @@
 import React from 'react'
-import {Component} from 'react'
-import Badge from 'react-bootstrap/Badge'
-import styled ,{ createGlobalStyle } from 'styled-components';
+
+
+import { createGlobalStyle } from 'styled-components';
 import BackImage from './assets/background.png'
 import NavbarHead from './components/NavbarHead';
 import NavbarVertical from './components/NavbarVertical';
