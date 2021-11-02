@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 
 import { createGlobalStyle } from "styled-components";
 import BackImage from "./assets/background.png";
-import NavbarHead from "./components/NavbarHead";
-import NavbarVertical from "./components/NavbarVertical";
-import Register from "./components/Register";
 
-const LoginPage = () => {
+import Register from "./components/Register";
+import Login from "./components/Login";
+
+const LoginPage = ({user, setUser}) => {
 
   const [show, setShow] = useState(false);
   
@@ -16,26 +16,26 @@ const LoginPage = () => {
 
   const handleShow = (e) => {
     e.preventDefault();
-    console.log("got here!")
     setShow(prev => !prev)}
 
 
-  const FetchRequest = async () => {
-    const response = await fetch(`${process.env.REACT_APP_BASE_URL}/user`);
-    const data = await response.json();
-    console.log("worked", data);
-  };
+  // const FetchRequest = async () => {
+  //   const response = await fetch(`${process.env.REACT_APP_BASE_URL}/user`);
+  //   const data = await response.json();
+  //   console.log("worked", data);
+  // };
 
-  useEffect(()=>{
-    FetchRequest()
+  // useEffect(()=>{
+  //   FetchRequest()
 
-  }, []);
+  // }, []);
 
   return (
     <>
       <GlobalStyle />
-      <NavbarHead  />
-      <NavbarVertical handleShow={e=>{handleShow(e)}}/>
+      {/* <NavbarHead  />
+      <NavbarVertical /> */}
+      <Login handleShow={e=>{handleShow(e)}} user={user} setUser={setUser}/>
       <Register show={show}  handleClose={handleClose}/>
       {/* <button type="submit"  onClick={handleShow}> check button</button> */}
     </>

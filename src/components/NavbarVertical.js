@@ -20,7 +20,7 @@ function NavbarVertical({handleShow}) {
         </Nav.Item>
       </Nav>
       </VerticalNav>
-      <Login handleShow={handleShow}/>
+      
 
 
     </PageForm >
