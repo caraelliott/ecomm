@@ -6,8 +6,9 @@ import Form from 'react-bootstrap/Form'
 const Register = ({ show, handleClose }) => {
   return (
     <>
-      {show ? 
-      <Modal>
+    
+      <Modal show={show} onHide={handleClose}>
+
         <Modal.Header closeButton>
           <Modal.Title>Register Here</Modal.Title>
         </Modal.Header>
@@ -43,7 +44,7 @@ const Register = ({ show, handleClose }) => {
           </Button>
       
         </Modal.Footer>
-      </Modal>: "Hello"}
+      </Modal>
     </>
   );
 };

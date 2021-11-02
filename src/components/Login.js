@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 
 import styled from 'styled-components';
 
-import Register from './Register'
+
 
 
 const Login=({handleShow}) =>{
@@ -39,8 +39,8 @@ const Login=({handleShow}) =>{
                 </div>
             </div> */}
 
-            <button type="submit" className="btn btn-primary btn-block">Submit</button>
-            <button type="submit" className="btn btn-primary btn-block" onClick={handleShow}>Register</button>
+            <button type="button" className="btn btn-primary btn-block">Submit</button>
+            <button type="button" className="btn btn-primary btn-block" onClick={handleShow}>Register</button>
             <p className="forgot-password text-right">
                 Forgot <a href="#action">password?</a>
             </p>

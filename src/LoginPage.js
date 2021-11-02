@@ -11,6 +11,7 @@ const LoginPage = () => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(prev => !prev);
+
   const handleShow = () => {
     console.log("got here!")
     setShow(prev => !prev)}
@@ -33,6 +34,7 @@ const LoginPage = () => {
       <NavbarHead  />
       <NavbarVertical handleShow={handleShow}/>
       <Register show={show}  handleClose={handleClose}/>
+      {/* <button type="submit"  onClick={handleShow}> check button</button> */}
     </>
   );
 };
