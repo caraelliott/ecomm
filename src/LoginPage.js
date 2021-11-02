@@ -9,10 +9,13 @@ import Register from "./components/Register";
 const LoginPage = () => {
 
   const [show, setShow] = useState(false);
+  
+
 
   const handleClose = () => setShow(prev => !prev);
 
-  const handleShow = () => {
+  const handleShow = (e) => {
+    e.preventDefault();
     console.log("got here!")
     setShow(prev => !prev)}
 
@@ -32,12 +35,12 @@ const LoginPage = () => {
     <>
       <GlobalStyle />
       <NavbarHead  />
-      <NavbarVertical handleShow={handleShow}/>
+      <NavbarVertical handleShow={e=>{handleShow(e)}}/>
       <Register show={show}  handleClose={handleClose}/>
       {/* <button type="submit"  onClick={handleShow}> check button</button> */}
     </>
   );
-};
+}
 const GlobalStyle = createGlobalStyle`
 body {
   margin: 10px;
