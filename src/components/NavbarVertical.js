@@ -5,7 +5,7 @@ import Login from './Login';
 
 
 
-function NavbarVertical() {
+function NavbarVertical({handleShow}) {
   return (
     <PageForm>
         <VerticalNav>
@@ -20,10 +20,10 @@ function NavbarVertical() {
         </Nav.Item>
       </Nav>
       </VerticalNav>
-      <Login/>
+      <Login handleShow={handleShow}/>
 
 
-    </PageForm>
+    </PageForm >
   );
 }
 
