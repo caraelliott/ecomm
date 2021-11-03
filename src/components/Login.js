@@ -102,10 +102,10 @@ const Login = ({ handleShow, user, setUser}) => {
 
 const FormWrapper = styled.div`
   background-color: rgb(220, 220, 220, 0.2);
-  margin: 160px auto;
+  margin: 0 20px;
   // border:2px solid red;
   width: 40vw;
-  height: 60vh;
+  height: 100vh;
   padding: 20px;
 `;
 
