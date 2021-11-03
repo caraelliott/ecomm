@@ -26,7 +26,7 @@ const Login = ({ handleShow, user, setUser}) => {
                 }
               );
               const data = await reg.json()
-              console.log(data);
+              
               setUser({email:data.user.email, token:data.token})
             } catch (error) {
               console.log(error);
@@ -46,8 +46,7 @@ const Login = ({ handleShow, user, setUser}) => {
       <FormWrapper>
         <form>
           <h3>Sign In</h3>
-          <p>{user.email ? user.email :"no email"}</p>
-          <p>{user.token ? user.token :"no Token"}</p>
+         
 
           <div className="form-group">
             <label>Email address</label>

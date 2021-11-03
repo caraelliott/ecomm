@@ -1,11 +1,17 @@
 import React from "react";
 import Nav from "react-bootstrap/Nav";
 import styled from 'styled-components';
-import Login from './Login';
 
 
 
-function NavbarVertical({handleShow}) {
+
+function NavbarVertical({handleShow, setUser}) {
+  
+const logout = () =>{
+  setUser({});
+
+}
+
   return (
     <PageForm>
         <VerticalNav>
@@ -18,8 +24,11 @@ function NavbarVertical({handleShow}) {
         <Nav.Item href="#Item-3" >
           Top 10
         </Nav.Item>
+      
+      <button type="button" onClick={logout}>Logout</button>
       </Nav>
       </VerticalNav>
+      
       
 
 

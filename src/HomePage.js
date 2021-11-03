@@ -6,14 +6,14 @@ import BackImage from "./assets/background.png";
 
 
 
-function HomePage({user}) {
+function HomePage({user, setUser}) {
     return (
         <>
         { user.email ?
         <div>
             <GlobalStyle/>
             <NavbarHead/>
-            <NavbarVertical/>
+            <NavbarVertical setUser={setUser}/>
             
         </div>:
         <div>
