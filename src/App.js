@@ -15,8 +15,11 @@ function App() {
           </Route>
 
         
-        
-        <Route path="/home" component={()=><HomePage user={user} />} />
+        <Route path="/home">
+          {user.email ? 
+            <HomePage user={user} setUser={setUser} />:
+            <Redirect to="/"/>} 
+            </Route>
         </Switch>
       </Router>
     </>
