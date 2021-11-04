@@ -133,12 +133,12 @@ const Register = ({ show, handleClose }) => {
 
         {regStat?
          <Modal.Body>
-           <Alert>Registration Successfull! Add username </Alert>
+           <Alert>Registration Successful! Add username </Alert>
           
         
          <Form>
              <Form.Label>Enter Username</Form.Label>
-             <Form.Control type="text" placeholder="Enter Usename" onChange={(e) => {
+             <Form.Control type="text" placeholder="Enter Username" onChange={(e) => {
                   setUserName(e.target.value);
                 }}/>
              <Form.Text className="text-muted">
