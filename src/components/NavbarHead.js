@@ -6,27 +6,37 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import { GiShoppingCart } from "react-icons/gi";
+import Logo from "../assets/gameLogoTransparent.png";
+
 
 
 
 function NavbarHead() {
   return (
-    <div>
-      <Navbar   expand="lg">
-        <Container fluid>
-          <Navbar.Brand href="#">
-          Game Portal
-          </Navbar.Brand>
+    <>
+      <Navbar   expand="lg" style={{color: 'white'}}>
+        <Container fluid >
+        <Navbar.Brand href="#home" style={{ fontSize:'25px', color: "white"}}>
+        <img
+          alt=""
+          src={Logo}
+          width="80"
+          height="50"
+          className="d-inline-block "
+        />{' '}
+        
+          TheGamePortal
+          </Navbar.Brand >
           <Navbar.Toggle aria-controls="navbarScroll" />
-          <Navbar.Collapse id="navbarScroll">
+          <Navbar.Collapse id="navbarScroll"  style={{color: "white"}}>
             <Nav 
               className=" me-auto my-2 my-lg-0"
-              style={{ maxHeight: "100px" }}
+              style={{ maxHeight: "100px"}}
               navbarScroll
             >
-              <Nav.Link href="#action1">Home</Nav.Link>
-              {/* <Nav.Link href="#action2">Link</Nav.Link> */}
-              <NavDropdown title="Link" id="navbarScrollingDropdown">
+              <Nav.Link href="#action1 "  style={{color: "white"}} >Home</Nav.Link>
+              {/* <Nav.Link href="#action2" style={{color: "white"}}>Link</Nav.Link> */}
+              <NavDropdown title="About" id="collasible-nav-dropdown" style={{color: "white", }}>
                 <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action4">
                   Another action
@@ -40,8 +50,8 @@ function NavbarHead() {
                 Link
               </Nav.Link> */}
             </Nav>
-            <Button variant="outline-primary">
-              <GiShoppingCart size={30} style={{ color: "black" }} />
+            <Button variant="outline-dark">
+              <GiShoppingCart size={30} style={{ color: "white" }} />
               {"     "}
             </Button>
 
@@ -58,7 +68,7 @@ function NavbarHead() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-    </div>
+    </>
   );
 }
 
