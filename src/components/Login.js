@@ -1,52 +1,45 @@
 import React, { useState } from "react";
+import Logo from "../assets/gameLogoTransparent.png";
 
 
 import styled from "styled-components";
 
-const Login = ({ handleShow, user, setUser}) => {
-    const [userEmail, setUserEmail] = useState();
-    const [password, setPassword] = useState();
+const Login = ({ handleShow, user, setUser }) => {
+  const [userEmail, setUserEmail] = useState();
+  const [password, setPassword] = useState();
 
-    const handleLogin = async(e) =>{
-        e.preventDefault();
-        try {
-            const obj = JSON.stringify({
-              email: userEmail,
-              password: password,
-            });
-            const reg = await fetch(
-                `${process.env.REACT_APP_BASE_URL}/user/login`,
-                {
-                  mode: "cors",
-                  method: "post",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: obj,
-                }
-              );
-              const data = await reg.json()
-              
-              setUser({email:data.user.email, token:data.token})
-            } catch (error) {
-              console.log(error);
-            }
-          };
-            
-        // console.log("got here at login")
-        // console.log({userEmail, setUserEmail})
-    
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const obj = JSON.stringify({
+        email: userEmail,
+        password: password,
+      });
+      const reg = await fetch(`${process.env.REACT_APP_BASE_URL}/user/login`, {
+        mode: "cors",
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: obj,
+      });
+      const data = await reg.json();
 
+      setUser({ email: data.user.email, token: data.token });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-
-
+  // console.log("got here at login")
+  // console.log({userEmail, setUserEmail})
 
   return (
     <>
+
       <FormWrapper>
         <form>
           <h3>Sign In</h3>
-         
 
           <div className="form-group">
             <label>Email address</label>
@@ -54,7 +47,7 @@ const Login = ({ handleShow, user, setUser}) => {
               type="email"
               className="form-control"
               placeholder="Enter email"
-              onChange={(e) =>setUserEmail(e.target.value)}
+              onChange={(e) => setUserEmail(e.target.value)}
             />
           </div>
 
@@ -64,7 +57,7 @@ const Login = ({ handleShow, user, setUser}) => {
               type="password"
               className="form-control"
               placeholder="Enter password"
-              onChange={(e)=>setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
@@ -75,12 +68,13 @@ const Login = ({ handleShow, user, setUser}) => {
                 </div>
             </div> */}
 
-          <button 
-          type="button" 
-          className="btn btn-primary btn-block"  
-          onClick={(e) => {
-                handleLogin(e);
-              }}>
+          <button
+            type="button"
+            className="btn btn-primary btn-block"
+            onClick={(e) => {
+              handleLogin(e);
+            }}
+          >
             Submit
           </button>
           <button
@@ -100,8 +94,9 @@ const Login = ({ handleShow, user, setUser}) => {
 };
 
 const FormWrapper = styled.div`
-  background-color: rgb(220, 220, 220, 0.2);
-  margin: 0 20px;
+  background-color: rgb(0, 0, 0, 0.8);
+  // background-image:url(${Logo});
+  // margin: 0 20px;
   // border:2px solid red;
   width: 40vw;
   height: 100vh;
