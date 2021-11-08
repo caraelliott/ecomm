@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
@@ -7,11 +7,18 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import { GiShoppingCart } from "react-icons/gi";
 import Logo from "../assets/gameLogoTransparent.png";
+import Basket from "./Basket"
 
 
 
 
-function NavbarHead() {
+function NavbarHead({basket, setBasket}) {
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <>
       <Navbar   expand="lg" style={{color: 'white'}}>
@@ -50,10 +57,12 @@ function NavbarHead() {
                 Link
               </Nav.Link> */}
             </Nav>
-            <Button variant="outline-dark">
+            <Button variant="outline-dark" onClick={handleShow} >
               <GiShoppingCart size={30} style={{ color: "white" }} />
               {"     "}
             </Button>
+            <Basket basket={basket} setBasket={setBasket} show={show} onHide={handleClose}/>
+            
 
             <Form className="d-flex">
               <input

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState}from 'react'
 import NavbarHead from "./components/NavbarHead";
 import NavbarVertical from "./components/NavbarVertical";
 import styled,{ createGlobalStyle } from "styled-components";
@@ -6,6 +6,8 @@ import BackImage from "./assets/background.png";
 
 
 function HomePage({user, setUser}) {
+    const [basket, setBasket]=useState([])
+
     return (
         <>
         { user.email ?
@@ -13,8 +15,8 @@ function HomePage({user, setUser}) {
             <GlobalStyle/>
             <HomePageWrapper>
         
-            <NavbarHead/>
-            <NavbarVertical setUser={setUser}/>
+            <NavbarHead basket = {basket} setBasket={setBasket}/>
+            <NavbarVertical basket = {basket} setBasket={setBasket} setUser={setUser}/>
             
             </HomePageWrapper>
             

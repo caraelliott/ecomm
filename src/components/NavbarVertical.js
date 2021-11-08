@@ -14,7 +14,7 @@ import {
 import Button from "react-bootstrap/Button";
 import GamesAPI from "./GamesAPI";
 
-const NavbarVertical = ({ setUser }) => {
+const NavbarVertical = ({basket, setBasket, setUser }) => {
   const [data, setData] = useState([]);
   const [gameGenre, setgameGenre] = useState("");
 
@@ -122,7 +122,7 @@ const NavbarVertical = ({ setUser }) => {
 
       {/* </VerticalNav> */}
       {data.length > 0 ? (
-        <GamesAPI data={data} genres={gameGenre} />
+        <GamesAPI basket={basket} setBasket={setBasket} data={data} genres={gameGenre} />
       ) : (
         <p>Loading..</p>
       )}
