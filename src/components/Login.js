@@ -40,7 +40,7 @@ const Login = ({ handleShow, user, setUser }) => {
 
       <FormWrapper>
         <form>
-          <img src= {Logo} />
+          <img src= {Logo} alt="logo" />
 
           <div className="form-group">
             {/* <label>Email address</label> */}
@@ -104,7 +104,7 @@ const FormWrapper = styled.div`
     background-color: transparent;
     border-style:none;
     border-bottom: 5px solid white;
-    color:white;a
+    color:white;
 
   }
 `;

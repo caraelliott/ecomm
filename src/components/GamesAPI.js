@@ -8,12 +8,11 @@ import Table from "react-bootstrap/Table";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
 import { RiMovieLine } from "react-icons/ri";
 
-const GamesAPI = ({ basket, setBasket, data, genres }) => {
+const GamesAPI = ({ handleAdd, data, genres }) => {
   const [detailss, setDetailss] = useState([]);
-  
 
   const gameData = data;
-
+  
 
   const toggleDetails = (id) => {
     // const found = detailss.find((element) => element == id);
@@ -24,12 +23,7 @@ const GamesAPI = ({ basket, setBasket, data, genres }) => {
     }
   };
 
-  const handleAdd = (item) => {
-    setBasket([...basket, item]);
-    
-    console.log( basket );
-  };
-
+ 
   return (
     <>
       <GamesWrapper>
@@ -50,6 +44,7 @@ const GamesAPI = ({ basket, setBasket, data, genres }) => {
               <Card
                 style={{
                   width: "15rem",
+                  minHeight: "25rem",
 
                   backgroundColor: "rgb(54,69,79)",
                   border: "1px solid white",
@@ -64,6 +59,7 @@ const GamesAPI = ({ basket, setBasket, data, genres }) => {
                 />
                 <Card.Body>
                   <Card.Title>{item.productName}</Card.Title>
+                  <Card.Subtitle className="mb-2 text-muted" >£{item.price}</Card.Subtitle>
 
                   <Button
                     size="sm"
@@ -74,8 +70,9 @@ const GamesAPI = ({ basket, setBasket, data, genres }) => {
                   >
                     more info
                   </Button>
-
-                  <Collapse in={detailss.find((element) => element == item.id)}>
+                  <Collapse
+                    in={Boolean(detailss.find((element) => element === item.id)) }
+                  >
                     <div id="example-collapse-text">
                       <Table responsive="sm">
                         <tbody>
@@ -89,7 +86,7 @@ const GamesAPI = ({ basket, setBasket, data, genres }) => {
                           </tr>
                           <tr>
                             <td>Genres:</td>
-                            <td>{genres}</td>
+                            <td>{item.genre}</td>
                           </tr>
                           <tr>
                             <td>

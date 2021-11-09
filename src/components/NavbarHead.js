@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
@@ -7,13 +7,9 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import { GiShoppingCart } from "react-icons/gi";
 import Logo from "../assets/gameLogoTransparent.png";
-import Basket from "./Basket"
+import Basket from "./Basket";
 
-
-
-
-function NavbarHead({basket, setBasket}) {
-
+function NavbarHead({ user, handleAdd, basket, setBasket }) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -21,29 +17,37 @@ function NavbarHead({basket, setBasket}) {
 
   return (
     <>
-      <Navbar   expand="lg" style={{color: 'white'}}>
-        <Container fluid >
-        <Navbar.Brand href="#home" style={{ fontSize:'25px', color: "white"}}>
-        <img
-          alt=""
-          src={Logo}
-          width="80"
-          height="50"
-          className="d-inline-block "
-        />{' '}
-        
-          TheGamePortal
-          </Navbar.Brand >
+      <Navbar expand="lg" style={{ color: "white" }}>
+        <Container fluid>
+          <Navbar.Brand
+            href="#home"
+            style={{ fontSize: "25px", color: "white" }}
+          >
+            <img
+              alt=""
+              src={Logo}
+              width="80"
+              height="50"
+              className="d-inline-block "
+            />{" "}
+            TheGamePortal
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
-          <Navbar.Collapse id="navbarScroll"  style={{color: "white"}}>
-            <Nav 
+          <Navbar.Collapse id="navbarScroll" style={{ color: "white" }}>
+            <Nav
               className=" me-auto my-2 my-lg-0"
-              style={{ maxHeight: "100px"}}
+              style={{ maxHeight: "100px" }}
               navbarScroll
             >
-              <Nav.Link href="#action1 "  style={{color: "white"}} >Home</Nav.Link>
+              <Nav.Link href="#action1 " style={{ color: "white" }}>
+                Home
+              </Nav.Link>
               {/* <Nav.Link href="#action2" style={{color: "white"}}>Link</Nav.Link> */}
-              <NavDropdown title="About" id="collasible-nav-dropdown" style={{color: "white", }}>
+              <NavDropdown
+                title="About"
+                id="collasible-nav-dropdown"
+                style={{ color: "white" }}
+              >
                 <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action4">
                   Another action
@@ -53,16 +57,19 @@ function NavbarHead({basket, setBasket}) {
                   Something else here
                 </NavDropdown.Item>
               </NavDropdown>
-              {/* <Nav.Link href="#" disabled>
-                Link
-              </Nav.Link> */}
             </Nav>
-            <Button variant="outline-dark" onClick={handleShow} >
+            <Button variant="outline-dark" onClick={handleShow}>
               <GiShoppingCart size={30} style={{ color: "white" }} />
               {"     "}
             </Button>
-            <Basket basket={basket} setBasket={setBasket} show={show} onHide={handleClose}/>
-            
+            <Basket
+              user={user}
+              handleAdd={handleAdd}
+              basket={basket}
+              setBasket={setBasket}
+              show={show}
+              onHide={handleClose}
+            />
 
             <Form className="d-flex">
               <input
@@ -70,9 +77,10 @@ function NavbarHead({basket, setBasket}) {
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
+                style={{ backgroundColor: "transparent" }}
               />
 
-              <Button variant="outline-success">Search</Button>
+              <Button variant="outline-primary">Search</Button>
             </Form>
           </Navbar.Collapse>
         </Container>

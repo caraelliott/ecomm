@@ -14,7 +14,7 @@ import {
 import Button from "react-bootstrap/Button";
 import GamesAPI from "./GamesAPI";
 
-const NavbarVertical = ({basket, setBasket, setUser }) => {
+const NavbarVertical = ({handleAdd, basket, setBasket, setUser }) => {
   const [data, setData] = useState([]);
   const [gameGenre, setgameGenre] = useState("");
 
@@ -39,14 +39,7 @@ const NavbarVertical = ({basket, setBasket, setUser }) => {
         const data = await reg.json();
         const gameData = data.data;
         setData(gameData);
-        // setgameGenre(genre);
-        console.log("genre is ", { gameGenre });
-        // console.log(gameData);
 
-        // newData = await response.json();
-        // const dataResult = newData.results
-        // console.log("New Data is" ,dataResult);
-        //  setData(dataResult);
       } catch (error) {
         console.log("error is ", error);
       }
@@ -77,7 +70,7 @@ const NavbarVertical = ({basket, setBasket, setUser }) => {
               <SiApplearcade style={{ color: "white" }} /> Strategy
             </Nav.Item>
 
-            <Nav.Item onClick={() =>setgameGenre("adventure")}>
+            <Nav.Item className='effectHover' onClick={() =>setgameGenre("adventure")}>
               <SiApplearcade style={{ color: "white" }} /> Adventure
             </Nav.Item>
 
@@ -122,7 +115,10 @@ const NavbarVertical = ({basket, setBasket, setUser }) => {
 
       {/* </VerticalNav> */}
       {data.length > 0 ? (
-        <GamesAPI basket={basket} setBasket={setBasket} data={data} genres={gameGenre} />
+        <GamesAPI 
+        // basket={basket} setBasket={setBasket} 
+        handleAdd={handleAdd}
+        data={data} genres={gameGenre} />
       ) : (
         <p>Loading..</p>
       )}
@@ -140,5 +136,12 @@ const PageForm = styled.div`
   // border:2px solid red;
   display: flex;
   // height:70vh;
+  .effectHover:hover{
+    cursor:pointer;
+    font-size:19px;
+
+    color: blue;
+
+  }
 `;
 export default NavbarVertical;
