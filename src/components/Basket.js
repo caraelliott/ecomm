@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Table from "react-bootstrap/Table";
 import {
@@ -7,18 +7,27 @@ import {
   AiFillDelete,
 } from "react-icons/ai";
 import Button from "react-bootstrap/Button";
+import Accordion from "react-bootstrap/Accordion";
 
-const Basket = ({ user, handleAdd, basket, setBasket, show, onHide }) => {
-  console.log(basket);
-
+const Basket = ({
+  user,
+  handleAdd,
+  basket,
+  setBasket,
+  show,
+  onHide,
+  purchHistory,
+  setPurchHistory,
+}) => {
+  const [newOrder, setNewOrder] = useState([]);
   const totalPrice = basket.reduce(
-    (previous, current) =>Number(( previous + current.price * current.qty).toFixed(2)),
+    (previous, current) =>
+      Number((previous + current.price * current.qty).toFixed(2)),
     0
   );
-  const taxPrice =Number((totalPrice * 0.1).toFixed(2));
+  const taxPrice = Number((totalPrice * 0.1).toFixed(2));
   const shippingCost = totalPrice > 50 || totalPrice === 0 ? 0 : 10;
   const TotalCost = Number((totalPrice + taxPrice + shippingCost).toFixed(2));
-  // console.log('useremail', user.email)
   const basketId = basket.map((item) => {
     return { productId: item.id, quantity: item.qty };
   });
@@ -50,7 +59,6 @@ const Basket = ({ user, handleAdd, basket, setBasket, show, onHide }) => {
         customer: { email: user.email },
         order: basketId,
       });
-      console.log("object", obj);
 
       await fetch(`${process.env.REACT_APP_BASE_URL}/basket`, {
         mode: "cors",
@@ -63,6 +71,24 @@ const Basket = ({ user, handleAdd, basket, setBasket, show, onHide }) => {
     } catch (error) {
       console.log("error is ", error);
     }
+  };
+
+  const handleBuy = async () => {
+    const obj = JSON.stringify({
+      customer: { email: user.email },
+      order: basketId,
+    });
+
+    await fetch(`${process.env.REACT_APP_BASE_URL}/purchase`, {
+      mode: "cors",
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: obj,
+    });
+    setNewOrder(basket);
+    setBasket([]);
   };
 
   return (
@@ -103,7 +129,9 @@ const Basket = ({ user, handleAdd, basket, setBasket, show, onHide }) => {
                     {item.qty}&nbsp;
                     <AiOutlinePlusSquare onClick={() => handleAdd(item)} />
                   </td>
-                  <td style={{ textAlign: "end" }}>£{Number((item.qty * item.price).toFixed(2))}</td>
+                  <td style={{ textAlign: "end" }}>
+                    £{Number((item.qty * item.price).toFixed(2))}
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -142,11 +170,52 @@ const Basket = ({ user, handleAdd, basket, setBasket, show, onHide }) => {
                   </Button>
                 </td>
                 <td>
-                  <Button variant="outline-dark">Purchase</Button>
+                  <Button variant="outline-dark" onClick={handleBuy}>
+                    Purchase
+                  </Button>
                 </td>
               </tr>
             </tfoot>
           </Table>
+
+          <Accordion defaultActiveKey="0">
+            <Accordion.Item eventKey="0">
+              <Accordion.Header>Purchase History</Accordion.Header>
+              <Accordion.Body>
+                {purchHistory.length > 0 ? (
+                  <Table size="sm">
+                    <tbody>
+                      {purchHistory.map((item, i) => (
+                        <tr key={i}>
+                          <td>{item.productName}</td>
+                          <td>{item.price}</td>
+                          <td>{item.qty}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </Table>
+                ) : null}
+              </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="1">
+              <Accordion.Header>New Order</Accordion.Header>
+              <Accordion.Body>
+              {newOrder.length > 0 ? (
+                  <Table size="sm">
+                    <tbody>
+                      {newOrder.map((item, i) => (
+                        <tr key={i}>
+                          <td>{item.productName}</td>
+                          <td>{item.price}</td>
+                          <td>{item.qty}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </Table>
+                ) : null}
+              </Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
         </Offcanvas.Body>
       </Offcanvas>
     </div>

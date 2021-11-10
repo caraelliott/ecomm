@@ -8,12 +8,14 @@ import Button from "react-bootstrap/Button";
 import { GiShoppingCart } from "react-icons/gi";
 import Logo from "../assets/gameLogoTransparent.png";
 import Basket from "./Basket";
+import Badge from 'react-bootstrap/Badge'
 
-function NavbarHead({ user, handleAdd, basket, setBasket }) {
+function NavbarHead({ user, handleAdd, basket, setBasket,purchHistory, setPurchHistory }) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const totalItem = basket.reduce((prev, curr) => prev + curr.qty, 0);
 
   return (
     <>
@@ -58,8 +60,23 @@ function NavbarHead({ user, handleAdd, basket, setBasket }) {
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav>
-            <Button variant="outline-dark" onClick={handleShow}>
-              <GiShoppingCart size={30} style={{ color: "white" }} />
+            <h4>
+              Welcome <Badge bg="secondary">{user.name}</Badge>
+            </h4>&nbsp;&nbsp;&nbsp;
+            <p
+              style={{
+                backgroundColor: "black",
+                marginRight: "-12px",
+                zIndex: "2",
+                width: "20px",
+                borderRadius: "8px",
+                textAlign: "center",
+              }}
+            >
+              {totalItem}
+            </p>
+            <Button variant="outline-* " onClick={handleShow}>
+              <GiShoppingCart size={35} style={{ color: "white" }} />
               {"     "}
             </Button>
             <Basket
@@ -69,6 +86,8 @@ function NavbarHead({ user, handleAdd, basket, setBasket }) {
               setBasket={setBasket}
               show={show}
               onHide={handleClose}
+              purchHistory ={purchHistory}
+              setPurchHistory={setPurchHistory}
             />
 
             <Form className="d-flex">

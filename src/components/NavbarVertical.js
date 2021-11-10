@@ -50,7 +50,7 @@ const NavbarVertical = ({handleAdd, basket, setBasket, setUser }) => {
     <PageForm>
       {/* <VerticalNav> */}
 
-      <Nav justify className=" flex-column  " style={{ color: "white" }}>
+      <Nav justify className=" flex-column  " style={{ color: "white", width:'10vw' }}>
         <Nav.Item style={{ color: "white" }}>
           <h4>
             <IoLogoGameControllerB style={{ color: "white" }} />
@@ -62,11 +62,11 @@ const NavbarVertical = ({handleAdd, basket, setBasket, setUser }) => {
         <Nav.Item>
           <h4>Genre</h4>
           <Nav fill className=" flex-column  " style={{ color: "white" }}>
-            <Nav.Item onClick={() =>setgameGenre("action")}>
+            <Nav.Item className='effectHover' onClick={() =>setgameGenre("action")}>
               <ImFire style={{ color: "white" }} /> Action
             </Nav.Item>
 
-            <Nav.Item onClick={() =>setgameGenre("strategy")}>
+            <Nav.Item className='effectHover' onClick={() =>setgameGenre("strategy")}>
               <SiApplearcade style={{ color: "white" }} /> Strategy
             </Nav.Item>
 
@@ -74,32 +74,32 @@ const NavbarVertical = ({handleAdd, basket, setBasket, setUser }) => {
               <SiApplearcade style={{ color: "white" }} /> Adventure
             </Nav.Item>
 
-            <Nav.Item onClick={() =>setgameGenre("puzzle")}>
+            <Nav.Item className='effectHover' onClick={() =>setgameGenre("puzzle")}>
               <SiApplearcade style={{ color: "white" }} /> Puzzle
             </Nav.Item>
           </Nav>
         </Nav.Item>
         <br />
 
-        <Nav.Item href="#Item-2">
+        <Nav.Item >
           <h4>Platform</h4>
           <Nav fill className=" flex-column  " style={{ color: "white" }}>
-            <Nav.Item onClick={() =>setgameGenre("pc")}>
+            <Nav.Item className='effectHover' onClick={() =>setgameGenre("pc")}>
               <SiWindows style={{ color: "white" }} /> PC
             </Nav.Item>
 
-            <Nav.Item onClick={() =>setgameGenre("playstation")}>
-              <SiPlaystation style={{ color: "white" }} /> PlayStation
+            <Nav.Item className='effectHover' onClick={() =>setgameGenre("playstation")}>
+              <SiPlaystation style={{ color: "white" }} />PlayStation
             </Nav.Item>
 
-            <Nav.Item onClick={() =>setgameGenre("switch")}>
-              <SiNintendoswitch style={{ color: "white" }} /> Nintendo Switch
+            <Nav.Item className='effectHover' onClick={() =>setgameGenre("switch")}>
+              <SiNintendoswitch style={{ color: "white" }} />Switch
             </Nav.Item>
           </Nav>
         </Nav.Item>
         <br />
-        <Nav.Item href="#Item-3">
-          <h4>
+        <Nav.Item >
+          <h4 className='effectHover'>
             <SiApostrophe style={{ color: "white" }} />
             Top 10
           </h4>
@@ -135,10 +135,10 @@ const NavbarVertical = ({handleAdd, basket, setBasket, setUser }) => {
 const PageForm = styled.div`
   // border:2px solid red;
   display: flex;
-  // height:70vh;
+  ;
   .effectHover:hover{
     cursor:pointer;
-    font-size:19px;
+    
 
     color: blue;
 

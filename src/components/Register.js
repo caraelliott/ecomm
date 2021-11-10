@@ -32,6 +32,7 @@ const Register = ({ show, handleClose }) => {
         body: obj,
       }
     );
+      setRegStat(false)
       handleClose();
 
 
@@ -144,6 +145,7 @@ const Register = ({ show, handleClose }) => {
              <Form.Text className="text-muted">
                We'll never share your email with anyone else.
             </Form.Text>
+            <br/>
             <Button
                 variant="primary"
                 type="button"

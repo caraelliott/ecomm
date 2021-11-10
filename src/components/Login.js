@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Logo from "../assets/gameLogoTransparent.png";
-import Button from 'react-bootstrap/Button';
-
+import Button from "react-bootstrap/Button";
 
 import styled from "styled-components";
 
@@ -26,7 +25,7 @@ const Login = ({ handleShow, user, setUser }) => {
       });
       const data = await reg.json();
 
-      setUser({ email: data.user.email, token: data.token });
+      setUser({ email: data.user.email, name: data.user.name});
     } catch (error) {
       console.log(error);
     }
@@ -37,11 +36,9 @@ const Login = ({ handleShow, user, setUser }) => {
 
   return (
     <>
-
       <FormWrapper>
         <form>
-          <img src= {Logo} alt="logo" />
-
+          <img src={Logo} alt="logo" />
           <div className="form-group">
             {/* <label>Email address</label> */}
             <input
@@ -51,10 +48,8 @@ const Login = ({ handleShow, user, setUser }) => {
               onChange={(e) => setUserEmail(e.target.value)}
             />
           </div>
-          <br/>
-
+          <br />
           <div className="form-group ">
-            
             <input
               type="password"
               className="form-control styleInput"
@@ -62,28 +57,20 @@ const Login = ({ handleShow, user, setUser }) => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <br/>
-          
+          <br />
           Forgot <a href="#action">password?</a>
-          <br/>
-
-      
-
-            <Button variant="dark"
+          <br />
+          <Button
+            variant="dark"
             onClick={(e) => {
               handleLogin(e);
-            }}>
-          
-            Login
-          </Button>{' '}
-
-          <Button variant="dark"
-            onClick={handleShow}
+            }}
           >
+            Login
+          </Button>{" "}
+          <Button variant="dark" onClick={handleShow}>
             Register
           </Button>
-         
-          
         </form>
       </FormWrapper>
     </>
@@ -92,20 +79,16 @@ const Login = ({ handleShow, user, setUser }) => {
 
 const FormWrapper = styled.div`
   background-color: rgb(0, 0, 0);
-  // background-image:url(${Logo});
-  // margin: 0 auto;
-  // border:2px solid red;
   width: 40vw;
   height: 100vh;
   padding: 50px;
   text-align: center;
-  color:white;
-  .styleInput{
+  color: white;
+  .styleInput {
     background-color: transparent;
-    border-style:none;
+    border-style: none;
     border-bottom: 5px solid white;
-    color:white;
-
+    color: white;
   }
 `;
 

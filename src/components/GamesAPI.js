@@ -17,7 +17,7 @@ const GamesAPI = ({ handleAdd, data, genres }) => {
   const toggleDetails = (id) => {
     // const found = detailss.find((element) => element == id);
     if (!detailss.find((element) => element === id)) {
-      setDetailss([...detailss, id]);
+      setDetailss([id]);
     } else {
       setDetailss([...detailss].filter((element) => element !== id));
     }

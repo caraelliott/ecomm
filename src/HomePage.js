@@ -6,6 +6,7 @@ import BackImage from "./assets/background.png";
 
 function HomePage({ user, setUser }) {
   const [basket, setBasket] = useState([]);
+  const [purchHistory, setPurchHistory] = useState([]);
 
   useEffect(() => {
     const callBasket = async () => {
@@ -26,7 +27,25 @@ function HomePage({ user, setUser }) {
       setBasket(data.data);
     };
 
+    const callPurchase = async () => {
+      const obj = JSON.stringify({
+        email: user.email,
+      });
+      const req = await fetch(`${process.env.REACT_APP_BASE_URL}/order/user`, {
+        mode: "cors",
+        method: "put",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: obj,
+      });
+      const data = await req.json();
+      console.log("purchase history", data);
+      setPurchHistory(data.data);
+    };
+
     callBasket();
+    callPurchase();
   }, [user.email]);
 
   const handleAdd = (item) => {
@@ -40,10 +59,6 @@ function HomePage({ user, setUser }) {
     } else {
       setBasket([...basket, { ...item, qty: 1 }]);
     }
-
-    // setBasket([...basket, item]);
-
-    // console.log("basket: ", basket);
   };
 
   return (
@@ -57,6 +72,8 @@ function HomePage({ user, setUser }) {
               handleAdd={handleAdd}
               basket={basket}
               setBasket={setBasket}
+              purchHistory ={purchHistory}
+              setPurchHistory={setPurchHistory}
             />
             <NavbarVertical
               handleAdd={handleAdd}
