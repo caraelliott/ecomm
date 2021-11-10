@@ -14,7 +14,7 @@ import {
 import Button from "react-bootstrap/Button";
 import GamesAPI from "./GamesAPI";
 
-const NavbarVertical = ({ setUser }) => {
+const NavbarVertical = ({handleAdd, basket, setBasket, setUser }) => {
   const [data, setData] = useState([]);
   const [gameGenre, setgameGenre] = useState("");
 
@@ -39,14 +39,7 @@ const NavbarVertical = ({ setUser }) => {
         const data = await reg.json();
         const gameData = data.data;
         setData(gameData);
-        // setgameGenre(genre);
-        console.log("genre is ", { gameGenre });
-        // console.log(gameData);
 
-        // newData = await response.json();
-        // const dataResult = newData.results
-        // console.log("New Data is" ,dataResult);
-        //  setData(dataResult);
       } catch (error) {
         console.log("error is ", error);
       }
@@ -57,7 +50,7 @@ const NavbarVertical = ({ setUser }) => {
     <PageForm>
       {/* <VerticalNav> */}
 
-      <Nav justify className=" flex-column  " style={{ color: "white" }}>
+      <Nav justify className=" flex-column  " style={{ color: "white", width:'10vw' }}>
         <Nav.Item style={{ color: "white" }}>
           <h4>
             <IoLogoGameControllerB style={{ color: "white" }} />
@@ -69,44 +62,44 @@ const NavbarVertical = ({ setUser }) => {
         <Nav.Item>
           <h4>Genre</h4>
           <Nav fill className=" flex-column  " style={{ color: "white" }}>
-            <Nav.Item onClick={() =>setgameGenre("action")}>
+            <Nav.Item className='effectHover' onClick={() =>setgameGenre("action")}>
               <ImFire style={{ color: "white" }} /> Action
             </Nav.Item>
 
-            <Nav.Item onClick={() =>setgameGenre("strategy")}>
+            <Nav.Item className='effectHover' onClick={() =>setgameGenre("strategy")}>
               <SiApplearcade style={{ color: "white" }} /> Strategy
             </Nav.Item>
 
-            <Nav.Item onClick={() =>setgameGenre("adventure")}>
+            <Nav.Item className='effectHover' onClick={() =>setgameGenre("adventure")}>
               <SiApplearcade style={{ color: "white" }} /> Adventure
             </Nav.Item>
 
-            <Nav.Item onClick={() =>setgameGenre("puzzle")}>
+            <Nav.Item className='effectHover' onClick={() =>setgameGenre("puzzle")}>
               <SiApplearcade style={{ color: "white" }} /> Puzzle
             </Nav.Item>
           </Nav>
         </Nav.Item>
         <br />
 
-        <Nav.Item href="#Item-2">
+        <Nav.Item >
           <h4>Platform</h4>
           <Nav fill className=" flex-column  " style={{ color: "white" }}>
-            <Nav.Item onClick={() =>setgameGenre("pc")}>
+            <Nav.Item className='effectHover' onClick={() =>setgameGenre("pc")}>
               <SiWindows style={{ color: "white" }} /> PC
             </Nav.Item>
 
-            <Nav.Item onClick={() =>setgameGenre("playstation")}>
-              <SiPlaystation style={{ color: "white" }} /> PlayStation
+            <Nav.Item className='effectHover' onClick={() =>setgameGenre("playstation")}>
+              <SiPlaystation style={{ color: "white" }} />PlayStation
             </Nav.Item>
 
-            <Nav.Item onClick={() =>setgameGenre("switch")}>
-              <SiNintendoswitch style={{ color: "white" }} /> Nintendo Switch
+            <Nav.Item className='effectHover' onClick={() =>setgameGenre("switch")}>
+              <SiNintendoswitch style={{ color: "white" }} />Switch
             </Nav.Item>
           </Nav>
         </Nav.Item>
         <br />
-        <Nav.Item href="#Item-3">
-          <h4>
+        <Nav.Item >
+          <h4 className='effectHover'>
             <SiApostrophe style={{ color: "white" }} />
             Top 10
           </h4>
@@ -122,7 +115,10 @@ const NavbarVertical = ({ setUser }) => {
 
       {/* </VerticalNav> */}
       {data.length > 0 ? (
-        <GamesAPI data={data} genres={gameGenre} />
+        <GamesAPI 
+        // basket={basket} setBasket={setBasket} 
+        handleAdd={handleAdd}
+        data={data} genres={gameGenre} />
       ) : (
         <p>Loading..</p>
       )}
@@ -139,6 +135,13 @@ const NavbarVertical = ({ setUser }) => {
 const PageForm = styled.div`
   // border:2px solid red;
   display: flex;
-  // height:70vh;
+  ;
+  .effectHover:hover{
+    cursor:pointer;
+    
+
+    color: blue;
+
+  }
 `;
 export default NavbarVertical;

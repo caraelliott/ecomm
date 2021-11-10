@@ -8,38 +8,44 @@ import Table from "react-bootstrap/Table";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
 import { RiMovieLine } from "react-icons/ri";
 
-const GamesAPI = ({ data, genres }) => {
-  const [open, setOpen] = useState(false);
-  console.log(genres);
-  const genre = genres;
+const GamesAPI = ({ handleAdd, data, genres }) => {
+  const [detailss, setDetailss] = useState([]);
+
   const gameData = data;
-  // const genre= gameData[0].genre
+  
 
-  console.log(gameData);
+  const toggleDetails = (id) => {
+    // const found = detailss.find((element) => element == id);
+    if (!detailss.find((element) => element === id)) {
+      setDetailss([id]);
+    } else {
+      setDetailss([...detailss].filter((element) => element !== id));
+    }
+  };
 
+ 
   return (
     <>
       <GamesWrapper>
-        {genre === "pc" || genre === "playstation" || genre === "switch" ? (
+        {genres === "pc" || genres === "playstation" || genres === "switch" ? (
           <h1 className="title">
             {gameData[0].platform.charAt(0).toUpperCase() +
               gameData[0].platform.slice(1)}
           </h1>
         ) : (
           <h1 className="title">
-            {genre.charAt(0).toUpperCase() + genre.slice(1)}
+            {genres.charAt(0).toUpperCase() + genres.slice(1)}
           </h1>
         )}
 
         {gameData.map((item) => {
           return (
-              
             <div key={item.id}>
-            
               <Card
-              
                 style={{
                   width: "15rem",
+                  minHeight: "25rem",
+
                   backgroundColor: "rgb(54,69,79)",
                   border: "1px solid white",
                   margin: "0.2rem",
@@ -53,25 +59,25 @@ const GamesAPI = ({ data, genres }) => {
                 />
                 <Card.Body>
                   <Card.Title>{item.productName}</Card.Title>
+                  <Card.Subtitle className="mb-2 text-muted" >£{item.price}</Card.Subtitle>
 
-                  {/* <Card.Text>
-                       Release date: {item.releaseDate}
-                      </Card.Text> */}
                   <Button
                     size="sm"
                     variant="link"
-                    onClick={() => setOpen(!open)}
-                    aria-controls="example-collapse-text"
-                    aria-expanded={open}
+                    onClick={() => toggleDetails(item.id)}
+                    // aria-controls="example-collapse-text"
+                    // aria-expanded={open}
                   >
                     more info
                   </Button>
-                  <Collapse in={open}>
+                  <Collapse
+                    in={Boolean(detailss.find((element) => element === item.id)) }
+                  >
                     <div id="example-collapse-text">
                       <Table responsive="sm">
                         <tbody>
                           <tr>
-                            <td>Platform</td>
+                            <td>Platform:</td>
                             <td>{item.platform}</td>
                           </tr>
                           <tr>
@@ -80,11 +86,15 @@ const GamesAPI = ({ data, genres }) => {
                           </tr>
                           <tr>
                             <td>Genres:</td>
-                            <td>{genre}</td>
+                            <td>{item.genre}</td>
                           </tr>
                           <tr>
                             <td>
-                              <Button variant="outline-primary" size="sm">
+                              <Button
+                                variant="outline-primary"
+                                size="sm"
+                                onClick={() => handleAdd(item)}
+                              >
                                 <MdOutlineAddShoppingCart size={20} />
                               </Button>
                             </td>

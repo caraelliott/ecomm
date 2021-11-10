@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Logo from "../assets/gameLogoTransparent.png";
-
+import Button from "react-bootstrap/Button";
 
 import styled from "styled-components";
 
@@ -25,7 +25,7 @@ const Login = ({ handleShow, user, setUser }) => {
       });
       const data = await reg.json();
 
-      setUser({ email: data.user.email, token: data.token });
+      setUser({ email: data.user.email, name: data.user.name});
     } catch (error) {
       console.log(error);
     }
@@ -36,57 +36,41 @@ const Login = ({ handleShow, user, setUser }) => {
 
   return (
     <>
-
       <FormWrapper>
         <form>
-          <h3>Sign In</h3>
-
+          <img src={Logo} alt="logo" />
           <div className="form-group">
-            <label>Email address</label>
+            {/* <label>Email address</label> */}
             <input
               type="email"
-              className="form-control"
+              className="form-control styleInput"
               placeholder="Enter email"
               onChange={(e) => setUserEmail(e.target.value)}
             />
           </div>
-
-          <div className="form-group">
-            <label>Password</label>
+          <br />
+          <div className="form-group ">
             <input
               type="password"
-              className="form-control"
+              className="form-control styleInput"
               placeholder="Enter password"
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-
-          {/* <div className="form-group">
-                <div className="custom-control custom-checkbox">
-                    <input type="checkbox" className="custom-control-input" id="customCheck1" />
-                    <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
-                </div>
-            </div> */}
-
-          <button
-            type="button"
-            className="btn btn-primary btn-block"
+          <br />
+          Forgot <a href="#action">password?</a>
+          <br />
+          <Button
+            variant="dark"
             onClick={(e) => {
               handleLogin(e);
             }}
           >
-            Submit
-          </button>
-          <button
-            type="button"
-            className="btn btn-primary btn-block"
-            onClick={handleShow}
-          >
+            Login
+          </Button>{" "}
+          <Button variant="dark" onClick={handleShow}>
             Register
-          </button>
-          <p className="forgot-password text-right">
-            Forgot <a href="#action">password?</a>
-          </p>
+          </Button>
         </form>
       </FormWrapper>
     </>
@@ -94,13 +78,18 @@ const Login = ({ handleShow, user, setUser }) => {
 };
 
 const FormWrapper = styled.div`
-  background-color: rgb(0, 0, 0, 0.8);
-  // background-image:url(${Logo});
-  // margin: 0 20px;
-  // border:2px solid red;
+  background-color: rgb(0, 0, 0);
   width: 40vw;
   height: 100vh;
-  padding: 20px;
+  padding: 50px;
+  text-align: center;
+  color: white;
+  .styleInput {
+    background-color: transparent;
+    border-style: none;
+    border-bottom: 5px solid white;
+    color: white;
+  }
 `;
 
 export default Login;
