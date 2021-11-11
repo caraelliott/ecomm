@@ -85,7 +85,7 @@ const GamesAPI = ({ handleAdd, data, genres }) => {
                             <td>{item.releaseDate}</td>
                           </tr>
                           <tr>
-                            <td>Genres:</td>
+                            <td>Genre:</td>
                             <td>{item.genre}</td>
                           </tr>
                           <tr>
