@@ -23,7 +23,7 @@ function HomePage({ user, setUser }) {
       });
 
       const data = await req.json();
-      console.log(data);
+      // console.log(data);
       setBasket(data.data);
     };
 
@@ -40,7 +40,7 @@ function HomePage({ user, setUser }) {
         body: obj,
       });
       const data = await req.json();
-      console.log("purchase history", data);
+    
       setPurchHistory(data.data);
     };
 

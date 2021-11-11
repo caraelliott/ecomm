@@ -8,6 +8,10 @@ import {
 } from "react-icons/ai";
 import Button from "react-bootstrap/Button";
 import Accordion from "react-bootstrap/Accordion";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Popover from "react-bootstrap/Popover";
+// import Tooltip from 'react-bootstrap/Tooltip';
+import Modal from "react-bootstrap/Modal";
 
 const Basket = ({
   user,
@@ -20,6 +24,9 @@ const Basket = ({
   setPurchHistory,
 }) => {
   const [newOrder, setNewOrder] = useState([]);
+  const [showBuy, setShowBuy] = useState(false);
+  const handleClose = () => setShowBuy(false);
+  const handleShow = () => setShowBuy(true);
   const totalPrice = basket.reduce(
     (previous, current) =>
       Number((previous + current.price * current.qty).toFixed(2)),
@@ -89,7 +96,16 @@ const Basket = ({
     });
     setNewOrder(basket);
     setBasket([]);
+    handleShow();
   };
+  const popover = (
+    <Popover id="popover-basic">
+      <Popover.Header as="h3">Basket Saved</Popover.Header>
+      <Popover.Body>
+        Your <strong>Basket</strong> has been saved.
+      </Popover.Body>
+    </Popover>
+  );
 
   return (
     <div>
@@ -164,12 +180,18 @@ const Basket = ({
 
             <tfoot>
               <tr>
-                <td>
-                  <Button variant="outline-dark" onClick={handleSave}>
-                    saveBasket
-                  </Button>
+                <td colSpan="3">
+                  <OverlayTrigger
+                    trigger="focus"
+                    placement="right"
+                    overlay={popover}
+                  >
+                    <Button variant="outline-dark" onClick={handleSave}>
+                      Save Basket
+                    </Button>
+                  </OverlayTrigger>
                 </td>
-                <td>
+                <td style={{ textAlign: "end" }}>
                   <Button variant="outline-dark" onClick={handleBuy}>
                     Purchase
                   </Button>
@@ -177,6 +199,19 @@ const Basket = ({
               </tr>
             </tfoot>
           </Table>
+          <Modal show={showBuy} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Order Placed</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              Thank you for shopping at <strong>TheGamePortal</strong>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+            </Modal.Footer>
+          </Modal>
 
           <Accordion defaultActiveKey="0">
             <Accordion.Item eventKey="0">
@@ -200,7 +235,7 @@ const Basket = ({
             <Accordion.Item eventKey="1">
               <Accordion.Header>New Order</Accordion.Header>
               <Accordion.Body>
-              {newOrder.length > 0 ? (
+                {newOrder.length > 0 ? (
                   <Table size="sm">
                     <tbody>
                       {newOrder.map((item, i) => (
