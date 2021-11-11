@@ -9,6 +9,7 @@ import { GiShoppingCart } from "react-icons/gi";
 import Logo from "../assets/gameLogoTransparent.png";
 import Basket from "./Basket";
 import Badge from 'react-bootstrap/Badge'
+import EasterEgg from "./EasterEgg"
 
 function NavbarHead({ user, handleAdd, basket, setBasket,purchHistory, setPurchHistory }) {
   const [show, setShow] = useState(false);
@@ -60,6 +61,7 @@ function NavbarHead({ user, handleAdd, basket, setBasket,purchHistory, setPurchH
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav>
+            <EasterEgg/>&nbsp;
             <h4>
               Welcome <Badge bg="secondary">{user.name}</Badge>
             </h4>&nbsp;&nbsp;&nbsp;

@@ -13,13 +13,14 @@
     "react-bootstrap": "^2.0.1",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
+    "react-konami-code": "^2.2.2",
     "react-router": "^5.2.1",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
     "styled-components": "^5.3.3",
     "web-vitals": "^1.1.2"
   },
-  "proxy":"https://games-final-project.herokuapp.com",
+  "proxy": "https://games-final-project.herokuapp.com",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

@@ -9,7 +9,6 @@ import { SiNetlify, SiHeroku, SiPostgresql } from "react-icons/si";
 import Nav from "react-bootstrap/Nav";
 import LogoG from "../assets/gameLogoTransparent.png";
 
-
 import { FaStarHalf, FaCopyright, FaReact, FaNodeJs } from "react-icons/fa";
 import Navbar from "react-bootstrap/Navbar";
 
@@ -45,20 +44,16 @@ const Login = ({ handleShow, user, setUser }) => {
   return (
     <>
       <Navbar expand="lg" variant="dark" bg="dark">
-      <Navbar.Brand
-            href="#home"
-            style={{ fontSize: "25px", color: "white" }}
-          >
-            <img
-              alt=""
-              src={LogoG}
-              width="80"
-              height="50"
-              className="d-inline-block "
-            />{" "}
-            TheGamePortal
-          </Navbar.Brand>
-      
+        <Navbar.Brand href="#home" style={{ fontSize: "25px", color: "white" }}>
+          <img
+            alt=""
+            src={LogoG}
+            width="80"
+            height="50"
+            className="d-inline-block "
+          />{" "}
+          TheGamePortal
+        </Navbar.Brand>
       </Navbar>
       <Wrapper>
         <FormWrapper>
@@ -198,8 +193,7 @@ const Login = ({ handleShow, user, setUser }) => {
               </Card.Header>
               <Card.Title>-Anam</Card.Title>
               <Card.Text>
-                "A clean, modern website, that will serve all your gaming needs
-                "
+                "A clean, modern App, with a wide range of games"
               </Card.Text>
             </Card.Body>
           </Card>
