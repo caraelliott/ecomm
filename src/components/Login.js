@@ -205,13 +205,13 @@ const Login = ({ handleShow, user, setUser }) => {
           </Card>
         </Stack>
       </ReviewWrapper>
-      <Navbar fixed="bottom" expand="lg" variant="dark" bg="dark">
+      <Navbar expand="lg" variant="dark" bg="dark">
         <Navbar.Brand style={{ padding: "10px" }}>
           <FaCopyright /> TheGamePortal
         </Navbar.Brand>
         <Nav className="justify-content-end" style={{ color: "white" }}>
           <Nav.Item>
-            Powered by : <FaReact /> <SiHeroku /> <SiNetlify /> <SiPostgresql />{" "}
+            Powered by: <FaReact /> <SiHeroku /> <SiNetlify /> <SiPostgresql />{" "}
             <FaNodeJs />
           </Nav.Item>
         </Nav>

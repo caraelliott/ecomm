@@ -10,7 +10,7 @@ import Button from "react-bootstrap/Button";
 import Accordion from "react-bootstrap/Accordion";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
-// import Tooltip from 'react-bootstrap/Tooltip';
+
 import Modal from "react-bootstrap/Modal";
 
 const Basket = ({
@@ -136,8 +136,8 @@ const Basket = ({
                     &nbsp;
                     {item.productName}
                   </td>
-                  <td>{item.price}</td>
-                  <td>
+                  <td>£{item.price}</td>
+                  <td style={{ textAlign: "center" }}>
                     <AiOutlineMinusSquare
                       onClick={() => handleDecrease(item)}
                     />
@@ -168,7 +168,7 @@ const Basket = ({
                 <td colSpan="3">
                   Shipping Cost
                   <br />
-                  (free shipping if you spend 50 and above)
+                  (free shipping if you spend £50 and above)
                 </td>
                 <td style={{ textAlign: "end" }}>£{shippingCost}</td>
               </tr>
@@ -233,7 +233,7 @@ const Basket = ({
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="1">
-              <Accordion.Header>New Order</Accordion.Header>
+              <Accordion.Header>Recent Order</Accordion.Header>
               <Accordion.Body>
                 {newOrder.length > 0 ? (
                   <Table size="sm">
