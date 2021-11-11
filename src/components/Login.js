@@ -198,7 +198,7 @@ const Login = ({ handleShow, user, setUser }) => {
               </Card.Header>
               <Card.Title>-Anam</Card.Title>
               <Card.Text>
-                "A clean, modern website, that will serve all your gaming needs
+                "A clean, modern App, that will serve all your gaming needs
                 "
               </Card.Text>
             </Card.Body>

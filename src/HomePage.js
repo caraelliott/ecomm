@@ -75,6 +75,7 @@ function HomePage({ user, setUser }) {
               purchHistory ={purchHistory}
               setPurchHistory={setPurchHistory}
             />
+            
             <NavbarVertical
               handleAdd={handleAdd}
               basket={basket}
