@@ -207,7 +207,7 @@ const Login = ({ handleShow, user, setUser }) => {
         </Navbar.Brand>
         <Nav className="justify-content-end" style={{ color: "white" }}>
           <Nav.Item>
-            Powered by: <FaReact /> <SiHeroku /> <SiNetlify /> <SiPostgresql />{" "}
+            <FaReact /> <SiHeroku /> <SiNetlify /> <SiPostgresql />{" "}
             <FaNodeJs />
           </Nav.Item>
         </Nav>
