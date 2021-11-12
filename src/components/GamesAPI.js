@@ -68,14 +68,14 @@ const GamesAPI = ({ handleAdd, data, genres }) => {
                     // aria-controls="example-collapse-text"
                     // aria-expanded={open}
                   >
-                    more info
+                    More Info 
                   </Button>
                   <Collapse
                     in={Boolean(detailss.find((element) => element === item.id)) }
                   >
                     <div id="example-collapse-text">
                       <Table responsive="sm">
-                        <tbody>
+                        <tbody style={{color: 'white'}}>
                           <tr>
                             <td>Platform:</td>
                             <td>{item.platform}</td>

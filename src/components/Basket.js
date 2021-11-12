@@ -12,6 +12,10 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 
 import Modal from "react-bootstrap/Modal";
+import InputGroup from "react-bootstrap/InputGroup";
+import Form from "react-bootstrap/Form";
+import styled from "styled-components";
+
 
 const Basket = ({
   user,
@@ -21,10 +25,11 @@ const Basket = ({
   show,
   onHide,
   purchHistory,
-  setPurchHistory,
 }) => {
   const [newOrder, setNewOrder] = useState([]);
   const [showBuy, setShowBuy] = useState(false);
+  const [discount, setDiscount] = useState("");
+  console.log(discount);
   const handleClose = () => setShowBuy(false);
   const handleShow = () => setShowBuy(true);
   const totalPrice = basket.reduce(
@@ -35,6 +40,7 @@ const Basket = ({
   const taxPrice = Number((totalPrice * 0.1).toFixed(2));
   const shippingCost = totalPrice > 50 || totalPrice === 0 ? 0 : 10;
   const TotalCost = Number((totalPrice + taxPrice + shippingCost).toFixed(2));
+
   const basketId = basket.map((item) => {
     return { productId: item.id, quantity: item.qty };
   });
@@ -116,10 +122,22 @@ const Basket = ({
         style={{ width: "40vw", backgroundColor: "rgb(255,255,255,0.9)" }}
       >
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Basket </Offcanvas.Title>
+          <Offcanvas.Title>
+            Basket
+            <InputGroup className="mb-3">
+              <Button variant="outline-secondary" id="button-addon1">
+                Code
+              </Button>
+              <Form.Control
+                type="text"
+                placeholder="Enter Discount Code"
+                onChange={(e) => setDiscount(e.target.value)}
+              />
+            </InputGroup>
+          </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <Table responsive="sm">
+          <Table striped bordered hover variant="dark"  responsive="sm">
             <thead style={{ textAlign: "center" }}>
               <tr>
                 <th>Game</th>
@@ -131,20 +149,20 @@ const Basket = ({
             <tbody>
               {basket.map((item) => (
                 <tr key={item.id}>
-                  <td>
-                    <AiFillDelete onClick={() => handleDel(item)} />
+                  <Td>
+                    <AiFillDelete  className="effectHover" onClick={() => handleDel(item)} />
                     &nbsp;
                     {item.productName}
-                  </td>
+                  </Td>
                   <td>£{item.price}</td>
-                  <td style={{ textAlign: "center" }}>
-                    <AiOutlineMinusSquare
+                  <Td style={{ textAlign: "center" }}>
+                    <AiOutlineMinusSquare className="effectHover"
                       onClick={() => handleDecrease(item)}
                     />
                     &nbsp;
                     {item.qty}&nbsp;
-                    <AiOutlinePlusSquare onClick={() => handleAdd(item)} />
-                  </td>
+                    <AiOutlinePlusSquare className="effectHover" onClick={() => handleAdd(item)} />
+                  </Td>
                   <td style={{ textAlign: "end" }}>
                     £{Number((item.qty * item.price).toFixed(2))}
                   </td>
@@ -152,7 +170,7 @@ const Basket = ({
               ))}
             </tbody>
 
-            <tbody>
+            <tbody >
               <tr>
                 <td colSpan="3">Total: </td>
 
@@ -173,8 +191,28 @@ const Basket = ({
                 <td style={{ textAlign: "end" }}>£{shippingCost}</td>
               </tr>
               <tr>
+                {discount === "KONAMI" ? (
+                  <>
+                    <td colSpan="3">Congratulations You get 10% off </td>
+                    <td style={{ textAlign: "end" }}>
+                      £{Number((TotalCost * 0.1).toFixed(2))}
+                    </td>
+                  </>
+                ) : null}
+              </tr>
+              <tr>
                 <td colSpan="3">Total to pay:</td>
-                <td style={{ textAlign: "end" }}>£{TotalCost}</td>
+                {discount === "KONAMI" ? (
+                  <td style={{ textAlign: "end" }}>
+                    £{Number(
+                      (
+                        TotalCost - Number((TotalCost * 0.1).toFixed(2))
+                      ).toFixed(2)
+                    )}
+                  </td>
+                ) : (
+                  <td style={{ textAlign: "end" }}>£{TotalCost}</td>
+                )}
               </tr>
             </tbody>
 
@@ -186,13 +224,13 @@ const Basket = ({
                     placement="right"
                     overlay={popover}
                   >
-                    <Button variant="outline-dark" onClick={handleSave}>
+                    <Button variant="light" onClick={handleSave}>
                       Save Basket
                     </Button>
                   </OverlayTrigger>
                 </td>
                 <td style={{ textAlign: "end" }}>
-                  <Button variant="outline-dark" onClick={handleBuy}>
+                  <Button variant="light"  onClick={handleBuy}>
                     Purchase
                   </Button>
                 </td>
@@ -215,7 +253,7 @@ const Basket = ({
 
           <Accordion defaultActiveKey="0">
             <Accordion.Item eventKey="0">
-              <Accordion.Header>Purchase History</Accordion.Header>
+              <Accordion.Header >Purchase History</Accordion.Header>
               <Accordion.Body>
                 {purchHistory.length > 0 ? (
                   <Table size="sm">
@@ -223,7 +261,7 @@ const Basket = ({
                       {purchHistory.map((item, i) => (
                         <tr key={i}>
                           <td>{item.productName}</td>
-                          <td>{item.price}</td>
+                          <td>£{item.price}</td>
                           <td>{item.qty}</td>
                         </tr>
                       ))}
@@ -241,7 +279,7 @@ const Basket = ({
                       {newOrder.map((item, i) => (
                         <tr key={i}>
                           <td>{item.productName}</td>
-                          <td>{item.price}</td>
+                          <td>£{item.price}</td>
                           <td>{item.qty}</td>
                         </tr>
                       ))}
@@ -256,5 +294,12 @@ const Basket = ({
     </div>
   );
 };
+
+const Td = styled.td`
+.effectHover:hover{
+  color: blue;
+  cursor: pointer;
+}
+`
 
 export default Basket;
