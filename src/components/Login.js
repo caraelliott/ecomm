@@ -9,7 +9,7 @@ import { SiNetlify, SiHeroku, SiPostgresql } from "react-icons/si";
 import Nav from "react-bootstrap/Nav";
 import LogoG from "../assets/gameLogoTransparent.png";
 
-import { FaStarHalf, FaCopyright, FaReact, FaNodeJs } from "react-icons/fa";
+import { FaStarHalf, FaCopyright, FaReact, FaNodeJs,FaEye } from "react-icons/fa";
 import Navbar from "react-bootstrap/Navbar";
 
 import styled, { keyframes } from "styled-components";
@@ -17,6 +17,7 @@ import styled, { keyframes } from "styled-components";
 const Login = ({ handleShow, user, setUser }) => {
   const [userEmail, setUserEmail] = useState();
   const [password, setPassword] = useState();
+  const [passVisb, setPassVisb] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -78,11 +79,12 @@ const Login = ({ handleShow, user, setUser }) => {
             <br />
             <div className="form-group ">
               <input
-                type="password"
+                type= {passVisb? "text" : "password"}
                 className=" styleInput"
                 placeholder="Enter password"
                 onChange={(e) => setPassword(e.target.value)}
               />
+              <FaEye className="hoverEffect" onClick={() => setPassVisb(!passVisb)}/>
             </div>
             Forgot <a href="#action">password?</a>
             <br />
@@ -234,6 +236,10 @@ const FormWrapper = styled.div`
     display: flex;
     padding: 20px;
     justify-content: center;
+  }
+  .hoverEffect:hover{
+    cursor:pointer;
+    color:blue;
   }
 `;
 
