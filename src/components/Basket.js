@@ -29,7 +29,6 @@ const Basket = ({
   const [newOrder, setNewOrder] = useState([]);
   const [showBuy, setShowBuy] = useState(false);
   const [discount, setDiscount] = useState("");
-  console.log(discount);
   const handleClose = () => setShowBuy(false);
   const handleShow = () => setShowBuy(true);
   const totalPrice = basket.reduce(
